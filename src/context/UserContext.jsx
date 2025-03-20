@@ -25,12 +25,6 @@ const UserContextProvider = ({ children }) => {
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  }, [user]);
-
   const handleLogout = async () => {
     await signOut();
     setUser(null);
