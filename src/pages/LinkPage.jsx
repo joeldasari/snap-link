@@ -4,7 +4,7 @@ import { deleteUrl, getUrl } from "@/db/urls";
 import useFetch from "@/hooks/useFetch";
 import { ArrowLeft, LinkIcon } from "lucide-react";
 import { useContext, useEffect } from "react";
-import { data, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BarLoader } from "react-spinners";
 import { toast } from "sonner";
 import { Copy, Download, Loader2, Trash } from "lucide-react";

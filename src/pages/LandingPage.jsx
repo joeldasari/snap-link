@@ -10,8 +10,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [longURL, setLongURL] = useState("");
   const navigate = useNavigate();
+  const baseStyles =
+    "h-[200px] w-[400px] md:h-[300px] md:w-[600px] lg:h-[400px] lg:w-[800px] xl:h-[600px] xl:w-[1200px] rounded-md border border-blue-400 shadow-blue-400 md:rounded-lg md:border-2 md:shadow-lg lg:rounded-xl lg:border-[3px] lg:shadow-xl xl:rounded-2xl xl:border-4 xl:shadow-2xl";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (longURL) {
@@ -45,18 +49,29 @@ const LandingPage = () => {
           Shrink It Now!
         </Button>
       </form>
-      <img
-        src="/demo.png"
-        alt="demo-img"
-        className="h-[200px] md:h-[350px] lg:h-[400px] xl:h-[600px] m-auto border-blue-400 border rounded-xl lg:border-2 lg:rounded-4xl shadow-blue-400 shadow-md xl:shadow-xl"
-      />
+      <div className="relative flex justify-center items-center max-w-full">
+        {/* Skeleton Placeholder */}
+        {!isLoaded && (
+          <div className={`${baseStyles} animate-pulse bg-gray-900`} />
+        )}
+        {/* Image */}
+        <img
+          src="/demo.png"
+          alt="demo-img"
+          className={`${baseStyles} object-cover ${
+            isLoaded ? "block" : "hidden"
+          }`}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => console.error("Image failed to load")}
+        />
+      </div>
       <h2 className="mt-14 text-center text-xl md:text-2xl 2xl:text-3xl font-bold bg-gradient-to-b from-foreground to-gray-400 text-transparent bg-clip-text">
         Frequently Asked Questions
       </h2>
       <Accordion
         type="single"
         collapsible
-        className="h-[300px] xl:h-[240px] max-sm: w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] m-auto"
+        className="h-[300px] xl:h-[240px] max-sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] m-auto"
       >
         <AccordionItem value="item-1">
           <AccordionTrigger className="cursor-pointer">
@@ -94,7 +109,7 @@ const LandingPage = () => {
           target="_blank"
           className="font-bold hover:text-gray-400 transition-colors duration-150"
         >
-          Joel D
+          Joel Dasari
         </Link>
       </footer>
     </div>
