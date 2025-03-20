@@ -106,10 +106,10 @@ const LinkPage = () => {
             </span>
             <Link
               className="text-lg xl:text-xl text-blue-400 font-bold"
-              to={`http://localhost:5173/${link}`}
+              to={`https://snap-link-sand.vercel.app/${link}`}
               target="_blank"
             >
-              https://snaplink.in/{link}
+              https://snap-link-sand.vercel.app/{link}
             </Link>
             <Link
               to={dataUrl?.original_url}
@@ -128,7 +128,7 @@ const LinkPage = () => {
               <Copy
                 onClick={() =>
                   copyToClipboard(
-                    `https://snaplink.in/${
+                    `https://snap-link-sand.vercel.app/${
                       dataUrl.custom_url
                         ? dataUrl.custom_url
                         : dataUrl.short_url

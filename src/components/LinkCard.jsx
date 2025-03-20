@@ -54,13 +54,13 @@ const LinkCard = ({ url, fetchUrls }) => {
             {url.title}
           </Link>
           <Link
-            to={`http://localhost:5173/${
+            to={`https://snap-link-sand.vercel.app/${
               url.custom_url ? url.custom_url : url.short_url
             }`}
             target="_blank"
             className="text-lg xl:text-xl text-blue-400 font-bold"
           >
-            https://snaplink.in/
+            https://snap-link-sand.vercel.app/
             {url.custom_url ? url.custom_url : url.short_url}
           </Link>
           <Link target="_blank" to={url.original_url} className="break-all">
@@ -77,7 +77,7 @@ const LinkCard = ({ url, fetchUrls }) => {
         <Copy
           onClick={() =>
             copyToClipboard(
-              `https://snaplink.in/${
+              `https://snap-link-sand.vercel.app/${
                 url.custom_url ? url.custom_url : url.short_url
               }`
             )
