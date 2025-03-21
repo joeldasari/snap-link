@@ -28,6 +28,7 @@ export default function LocationStats({ stats }) {
     <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] max-w-4xl mx-auto">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
+          style={{ outline: "none" }}
           data={cities.slice(0, 5)}
           margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
           accessibilityLayer
