@@ -156,7 +156,7 @@ const LinkPage = () => {
               )}
             </div>
           </div>
-          <div className="border p-8 rounded-lg xl:w-3/5 flex flex-col gap-8">
+          <div className="border p-4 rounded-lg xl:w-3/5 xl:p-8 flex flex-col gap-8">
             {dataClicks && dataClicks.length ? (
               loadingClicks ? (
                 <p>Loading...</p>
