@@ -10,12 +10,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobileLoaded, setIsMobileLoaded] = useState(false);
+  const [isWebsiteLoaded, setIsWebsiteLoaded] = useState(false);
   const [longURL, setLongURL] = useState("");
   const navigate = useNavigate();
 
-  // Responsive styles with proper 2:1 ratio and mobile-friendly widths
-  const baseStyles =
+  // Styles for 3:4 ratio (mobile)
+  const mobileStyles =
+    "h-[400px] w-[300px] max-w-[90vw] rounded-md border border-blue-400 shadow-md shadow-blue-500/50";
+
+  // Styles for 2:1 ratio (sm and above)
+  const websiteStyles =
     "h-[150px] w-[300px] sm:h-[200px] sm:w-[400px] md:h-[300px] md:w-[600px] lg:h-[400px] lg:w-[800px] xl:h-[600px] xl:w-[1200px] max-w-[90vw] rounded-md border border-blue-400 shadow-md shadow-blue-500/50 sm:rounded-lg sm:border-2 sm:shadow-lg md:rounded-xl md:border-[3px] md:shadow-xl lg:rounded-2xl lg:border-4 lg:shadow-2xl xl:rounded-3xl xl:border-[5px] xl:shadow-3xl";
 
   const handleSubmit = (e) => {
@@ -53,19 +58,37 @@ const LandingPage = () => {
         </Button>
       </form>
       <div className="relative flex justify-center items-center max-w-full px-4">
-        {/* Skeleton Placeholder */}
-        {!isLoaded && (
-          <div className={`${baseStyles} animate-pulse bg-gray-900`} />
+        {/* Mobile Skeleton (3:4) - Visible below sm */}
+        {!isMobileLoaded && (
+          <div
+            className={`${mobileStyles} animate-pulse bg-gray-900 sm:hidden`}
+          />
         )}
-        {/* Image */}
+        {/* Mobile Image (3:4) - Visible below sm */}
         <img
-          src="/demo.png"
-          alt="demo-img"
-          className={`${baseStyles} object-cover ${
-            isLoaded ? "block" : "hidden"
-          }`}
-          onLoad={() => setIsLoaded(true)}
-          onError={() => console.error("Image failed to load")}
+          src="/demo-mobile.jpg"
+          alt="demo-mobile"
+          className={`${mobileStyles} object-cover ${
+            isMobileLoaded ? "block" : "hidden"
+          } sm:hidden`}
+          onLoad={() => setIsMobileLoaded(true)}
+          onError={() => console.error("Mobile image failed to load")}
+        />
+        {/* Website Skeleton (2:1) - Visible sm and above */}
+        {!isWebsiteLoaded && (
+          <div
+            className={`${websiteStyles} animate-pulse bg-gray-900 hidden sm:block`}
+          />
+        )}
+        {/* Website Image (2:1) - Visible sm and above */}
+        <img
+          src="/demo-website.png"
+          alt="demo-website"
+          className={`${websiteStyles} object-cover ${
+            isWebsiteLoaded ? "block" : "hidden"
+          } hidden sm:block`}
+          onLoad={() => setIsWebsiteLoaded(true)}
+          onError={() => console.error("Website image failed to load")}
         />
       </div>
       <h2 className="mt-14 text-center text-xl md:text-2xl 2xl:text-3xl font-bold bg-gradient-to-b from-foreground to-gray-400 text-transparent bg-clip-text">
