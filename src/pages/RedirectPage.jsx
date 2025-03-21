@@ -20,13 +20,11 @@ const RedirectPage = () => {
   });
 
   useEffect(() => {
-    console.log("First useEffect: Fetching long URL");
     fn();
   }, []);
 
   useEffect(() => {
     if (!loadingLongUrl && longUrlData) {
-      console.log("Second useEffect: Storing clicks");
       fnStats();
     }
   }, [loadingLongUrl, longUrlData]);

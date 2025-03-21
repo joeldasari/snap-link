@@ -177,7 +177,7 @@ const LinkPage = () => {
                 </>
               )
             ) : (
-              <p>No Stats found!</p>
+              <p>No Stats to display</p>
             )}
           </div>
         </div>
