@@ -16,28 +16,23 @@ export default function DeviceStats({ stats }) {
   }));
 
   return (
-    <div className="w-full m-auto">
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
-          <Pie
-            data={devices}
-            dataKey="count" // Matches the key in the devices array
-            label={
-              ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%` // Use 'name' and 'percent'
-            }
-            labelLine={false}
-            outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }}
-            paddingAngle={2}
-          >
-            {devices.map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart width={400} height={400}>
+        <Pie
+          data={devices}
+          dataKey="count" // Matches the key in the devices array
+          label={
+            ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%` // Use 'name' and 'percent'
+          }
+          labelLine={false}
+          outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }}
+          paddingAngle={2}
+        >
+          {devices.map((_, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
   );
 }
