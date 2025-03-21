@@ -11,28 +11,33 @@ export default function DeviceStats({ stats }) {
 
   // Step 2: Transform into array of objects for Recharts
   const devices = Object.entries(deviceCount).map(([device, count]) => ({
-    name: device, // Use 'name' as the label key (common convention in Recharts)
-    count: count, // Use lowercase 'count' for consistency
+    name: device,
+    count: count,
   }));
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={400} height={400}>
-        <Pie
-          data={devices}
-          dataKey="count" // Matches the key in the devices array
-          label={
-            ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%` // Use 'name' and 'percent'
-          }
-          labelLine={false}
-          outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }}
-          paddingAngle={2}
-        >
-          {devices.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px]">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={devices}
+            dataKey="count"
+            label={({ name, percent }) =>
+              `${name}: ${(percent * 100).toFixed(0)}%`
+            }
+            labelLine={false}
+            outerRadius="70%" // Use percentage for responsive scaling
+            paddingAngle={2}
+          >
+            {devices.map((_, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
