@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <nav className="flex items-center justify-between py-8">
-      <Link to={"/"} className="text-xl sm:text-3xl italic font-bold">
+      <Link to={"/"} className="text-2xl sm:text-3xl italic font-bold">
         <span className="text-foreground">Snap</span>
         <span className="text-blue-400">Link</span>
       </Link>

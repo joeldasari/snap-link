@@ -13,21 +13,24 @@ const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [longURL, setLongURL] = useState("");
   const navigate = useNavigate();
+
+  // Responsive styles with proper 2:1 ratio and mobile-friendly widths
   const baseStyles =
-    "h-[200px] w-[400px] md:h-[300px] md:w-[600px] lg:h-[400px] lg:w-[800px] xl:h-[600px] xl:w-[1200px] rounded-md border border-blue-400 shadow-blue-400 md:rounded-lg md:border-2 md:shadow-lg lg:rounded-xl lg:border-[3px] lg:shadow-xl xl:rounded-2xl xl:border-4 xl:shadow-2xl";
+    "h-[150px] w-[300px] sm:h-[200px] sm:w-[400px] md:h-[300px] md:w-[600px] lg:h-[400px] lg:w-[800px] xl:h-[600px] xl:w-[1200px] max-w-[90vw] rounded-md border border-blue-400 shadow-md shadow-blue-500/50 sm:rounded-lg sm:border-2 sm:shadow-lg md:rounded-xl md:border-[3px] md:shadow-xl lg:rounded-2xl lg:border-4 lg:shadow-2xl xl:rounded-3xl xl:border-[5px] xl:shadow-3xl";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (longURL) {
       navigate("/auth");
       localStorage.setItem("longURL", longURL);
-    } else return;
+    }
   };
+
   return (
     <div className="flex flex-col items-center justify-center gap-8 py-4">
       <h1 className="text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold bg-gradient-to-b from-foreground to-gray-400 text-transparent bg-clip-text">
         Shrink Links Like Magic <br /> Your Ultimate{" "}
-        <span className="underline underline-offset-8 decoration-blue-400 decoration-thickness-2">
+        <span className="underline underline-offset-8 decoration-blue-400 decoration-2">
           URL Shortener
         </span>
       </h1>
@@ -49,7 +52,7 @@ const LandingPage = () => {
           Shrink It Now!
         </Button>
       </form>
-      <div className="relative flex justify-center items-center max-w-full">
+      <div className="relative flex justify-center items-center max-w-full px-4">
         {/* Skeleton Placeholder */}
         {!isLoaded && (
           <div className={`${baseStyles} animate-pulse bg-gray-900`} />
