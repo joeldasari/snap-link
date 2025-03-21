@@ -25,7 +25,7 @@ export default function LocationStats({ stats }) {
   }));
 
   return (
-    <div className="h-[200px] md:h-[250px] xl:h-[300px] w-full m-auto">
+    <div className="h-[250px] xl:h-[300px] w-full m-auto">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={cities.slice(0, 5)}
