@@ -18,7 +18,7 @@ export default function DeviceStats({ stats }) {
   return (
     <div className="w-full m-auto">
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
+        <PieChart width={400} height={400}>
           <Pie
             data={devices}
             dataKey="count" // Matches the key in the devices array
