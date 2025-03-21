@@ -16,7 +16,7 @@ export default function DeviceStats({ stats }) {
   }));
 
   return (
-    <div className="h-[250px] xl:h-[300px] w-full m-auto">
+    <div className="h-[250px] xl:h-[300px] p-[40px] w-full m-auto">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
