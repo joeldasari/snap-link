@@ -29,12 +29,10 @@ export default function DeviceStats({ stats }) {
           <Pie
             data={devices}
             dataKey="count"
-            label={({ name, percent }) =>
-              `${name}: ${(percent * 100).toFixed(0)}%`
-            }
+            label={({ name }) => name} // Show only device name, no percentage
             labelLine={false}
-            outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }} // Responsive radius
-            paddingAngle={2} // Slight separation between slices
+            outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }}
+            paddingAngle={2}
           >
             {devices.map((_, index) => (
               <Cell
