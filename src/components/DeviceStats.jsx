@@ -25,6 +25,7 @@ export default function DeviceStats({ stats }) {
             label={({ name, percent }) =>
               `${name}: ${(percent * 100).toFixed(0)}%`
             }
+            fontSize={12}
             labelLine={false}
             outerRadius="70%" // Use percentage for responsive scaling
             paddingAngle={2}
