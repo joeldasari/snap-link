@@ -29,7 +29,7 @@ export default function DeviceStats({ stats }) {
           <Pie
             data={devices}
             dataKey="count"
-            label={({ name }) => name} // Show only device name, no percentage
+            label={({ percent }) => `${(percent * 100).toFixed(0)}%`} // Show only percentage
             labelLine={false}
             outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }}
             paddingAngle={2}
