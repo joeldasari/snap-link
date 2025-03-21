@@ -25,18 +25,33 @@ export default function LocationStats({ stats }) {
   }));
 
   return (
-    <div className="h-[250px] xl:h-[300px] w-full m-auto">
+    <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] max-w-4xl mx-auto">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={cities.slice(0, 5)}
-          margin={{ top: 20 }}
+          margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
           accessibilityLayer
         >
-          <XAxis dataKey="City" padding={{ left: 30, right: 30 }} />
-          <YAxis tickCount={1} />
+          <XAxis
+            dataKey="City"
+            padding={{ left: 20, right: 20 }}
+            tick={{ fontSize: 12, fill: "#666" }} // Improved legibility
+          />
+          <YAxis
+            domain={[0, "auto"]}
+            allowDecimals={false}
+            tick={{ fontSize: 12, fill: "#666" }}
+            tickFormatter={(value) => Math.floor(value)} // Integers only
+          />
           <Tooltip labelStyle={{ color: "black" }} />
           <Legend />
-          <Line type="monotone" dataKey="Count" stroke="#3B82F6"></Line>
+          <Line
+            type="monotone"
+            dataKey="Count"
+            stroke="#3B82F6"
+            strokeWidth={2}
+            dot={{ r: 4 }} // Visible data points
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

@@ -16,16 +16,18 @@ export default function DeviceStats({ stats }) {
   }));
 
   return (
-    <div className="h-[250px] xl:h-[300px] w-full m-auto">
+    <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] max-w-4xl mx-auto">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={devices}
-            dataKey="count" // Matches the key in the devices array
-            label={
-              ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%` // Use 'name' and 'percent'
+            dataKey="count"
+            label={({ name, percent }) =>
+              `${name}: ${(percent * 100).toFixed(0)}%`
             }
             labelLine={false}
+            outerRadius={{ base: 60, sm: 80, md: 100, lg: 120, xl: 140 }} // Responsive radius
+            paddingAngle={2} // Slight separation between slices
           >
             {devices.map((_, index) => (
               <Cell
@@ -34,6 +36,8 @@ export default function DeviceStats({ stats }) {
               />
             ))}
           </Pie>
+          <Tooltip />
+          <Legend />
         </PieChart>
       </ResponsiveContainer>
     </div>
