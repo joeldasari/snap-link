@@ -45,7 +45,7 @@ export default function LocationStats({ stats }) {
             tickFormatter={(value) => Math.floor(value)} // Integers only
           />
           <Tooltip
-            itemStyle={12}
+            itemStyle={{ fontSize: 12 }}
             labelStyle={{ color: "black", fontSize: 12 }}
           />
           <Legend />
