@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect
 import { Link, useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
@@ -30,6 +30,12 @@ const LandingPage = () => {
       localStorage.setItem("longURL", longURL);
     }
   };
+
+  // Reset loading states on initial render to avoid cached image issues
+  useEffect(() => {
+    setIsMobileLoaded(false);
+    setIsWebsiteLoaded(false);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 py-4">
@@ -57,39 +63,37 @@ const LandingPage = () => {
           Shrink It Now!
         </Button>
       </form>
-      <div className="relative flex justify-center items-center max-w-full px-4">
-        {/* Mobile Skeleton (3:4) - Visible below sm */}
-        {!isMobileLoaded && (
-          <div
-            className={`${mobileStyles} animate-pulse bg-gray-900 sm:hidden`}
+      <div className="flex flex-col items-center max-w-full px-4 gap-4">
+        {/* Mobile Section */}
+        <div className="sm:hidden">
+          {!isMobileLoaded && (
+            <div className={`${mobileStyles} animate-pulse bg-gray-900`} />
+          )}
+          <img
+            src="/demo-mobile.jpg"
+            alt="demo-mobile"
+            className={`${mobileStyles} object-cover ${
+              isMobileLoaded ? "block" : "hidden"
+            }`}
+            onLoad={() => setIsMobileLoaded(true)}
+            onError={() => console.error("Mobile image failed to load")}
           />
-        )}
-        {/* Mobile Image (3:4) - Visible below sm */}
-        <img
-          src="/demo-mobile.jpg"
-          alt="demo-mobile"
-          className={`${mobileStyles} object-cover ${
-            isMobileLoaded ? "block" : "hidden"
-          } sm:hidden`}
-          onLoad={() => setIsMobileLoaded(true)}
-          onError={() => console.error("Mobile image failed to load")}
-        />
-        {/* Website Skeleton (2:1) - Visible sm and above */}
-        {!isWebsiteLoaded && (
-          <div
-            className={`${websiteStyles} animate-pulse bg-gray-900 hidden sm:block`}
+        </div>
+        {/* Website Section */}
+        <div className="hidden sm:block">
+          {!isWebsiteLoaded && (
+            <div className={`${websiteStyles} animate-pulse bg-gray-900`} />
+          )}
+          <img
+            src="/demo-website.png"
+            alt="demo-website"
+            className={`${websiteStyles} object-cover ${
+              isWebsiteLoaded ? "block" : "hidden"
+            }`}
+            onLoad={() => setIsWebsiteLoaded(true)}
+            onError={() => console.error("Website image failed to load")}
           />
-        )}
-        {/* Website Image (2:1) - Visible sm and above */}
-        <img
-          src="/demo-website.png"
-          alt="demo-website"
-          className={`${websiteStyles} object-cover ${
-            isWebsiteLoaded ? "block" : "hidden"
-          } hidden sm:block`}
-          onLoad={() => setIsWebsiteLoaded(true)}
-          onError={() => console.error("Website image failed to load")}
-        />
+        </div>
       </div>
       <h2 className="mt-14 text-center text-xl md:text-2xl 2xl:text-3xl font-bold bg-gradient-to-b from-foreground to-gray-400 text-transparent bg-clip-text">
         Frequently Asked Questions
