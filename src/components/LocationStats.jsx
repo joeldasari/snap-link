@@ -25,7 +25,7 @@ export default function LocationStats({ stats }) {
   }));
 
   return (
-    <div className="size-[300px] sm:size-[400px] w-full m-auto">
+    <div className="size-[300px] sm:size-full w-full m-auto">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           style={{ outline: "none" }}
