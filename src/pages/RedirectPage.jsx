@@ -2,16 +2,18 @@ import { storeClicks } from "@/db/clicks";
 import { getLongUrl } from "@/db/urls";
 import useFetch from "@/hooks/useFetch";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BarLoader } from "react-spinners";
 
 const RedirectPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     loading: loadingLongUrl,
     data: longUrlData,
     fn,
+    error: errorLongUrl,
   } = useFetch(getLongUrl, id);
 
   const { loading: loadingStats, fn: fnStats } = useFetch(storeClicks, {
@@ -36,6 +38,9 @@ const RedirectPage = () => {
         <span className="text-center text-gray-400">Redirecting...</span>
       </div>
     );
+  }
+  if (errorLongUrl) {
+    navigate("*");
   }
   return null;
 };
