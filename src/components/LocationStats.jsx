@@ -44,7 +44,7 @@ export default function LocationStats({ stats }) {
             tick={{ fontSize: 12, fill: "#666" }}
             tickFormatter={(value) => Math.floor(value)} // Integers only
           />
-          <Tooltip labelStyle={{ color: "black" }} />
+          <Tooltip labelStyle={{ color: "black", fontSize: 12 }} />
           <Legend />
           <Line
             type="monotone"
@@ -52,6 +52,7 @@ export default function LocationStats({ stats }) {
             stroke="#3B82F6"
             strokeWidth={2}
             dot={{ r: 4 }} // Visible data points
+            fontStyle={12}
           />
         </LineChart>
       </ResponsiveContainer>
